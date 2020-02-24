@@ -1,2 +1,4 @@
 # SongAssociation-Client
-Does this show up?
+Developers:
+Ari Greif - AriG150 
+Kobe Ryan - klar2d2
