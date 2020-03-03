@@ -29,6 +29,8 @@ import {
 import {createStackNavigator} from '@react-navigation/stack'
 import Title from './controllers/Title'
 import EnterPlayers from './controllers/EnterPlayers'
+import CountDown from './controllers/CountDown'
+
 
 
 const Stack = createStackNavigator()
