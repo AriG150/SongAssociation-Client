@@ -1,4 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -61,14 +62,15 @@ export default function CountDown({navigation}) {
   })
     return (
       <ScrollView>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>CountDown</Text>
-        <View>
-          <Text>{count}</Text>
-          <Text>{currentWord}</Text>
-          <Text>{gameOver}</Text>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text>CountDown</Text>
+          <View>
+            <Text>{count}</Text>
+            <Text>{currentWord}</Text>
+            <Text>{gameOver}</Text>
+          </View>
         </View>
-      </View>
       </ScrollView>
     )
 }
+

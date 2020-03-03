@@ -32,7 +32,6 @@ import EnterPlayers from './controllers/EnterPlayers'
 import CountDown from './controllers/CountDown'
 
 
-
 const Stack = createStackNavigator()
 
 export default function App() {
