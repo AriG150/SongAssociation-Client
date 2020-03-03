@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -26,10 +27,10 @@ export default function EnterPlayers({navigation}) {
             name="Player Name"
             onChangeText={text => setPlayerName(text)}
             value={playerName}
-            
           />
           <Text> Player Name: {playerName} </Text>
-          {/* <Button onPress={() => }/> */}
+
+          <Button title="Add Player" onPress={() => Alert.alert('This will eventually add another Text Input Field')}/>
         </View>
           <Text>EnterPlayers</Text>
           <View>
