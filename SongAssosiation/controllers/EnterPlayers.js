@@ -9,20 +9,13 @@ import {
   Button,
 } from 'react-native';
 
-class EnterPlayers extends Component {
-  _titleButton() {
-    alert('button')
-  }
-  render() {
+export default function EnterPlayers({navigation}) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>EnterPlayers</Text>
         <View>
-          <Button onPress={this._titleButton} title="Enter"/>
+          <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
         </View>
       </View>
     )
-  }
 }
-
-export default EnterPlayers;
