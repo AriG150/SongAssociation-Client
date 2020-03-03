@@ -38,7 +38,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Title" component={Title} />
+        <Stack.Screen name="Song Association" component={Title} />
         <Stack.Screen name="EnterPlayers" component={EnterPlayers} />
         <Stack.Screen name="CountDown" component={CountDown} />
       </Stack.Navigator>
