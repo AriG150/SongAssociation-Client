@@ -14,31 +14,34 @@ import {
 export default function EnterPlayers({navigation}) {
   // const [value, onChangeText] = React.useState('Player Name')
   const [playerName, setPlayerName] = React.useState('')
-
-  // handleTextInput = (text) => {
-  //   setPlayerName('')
-  // }
+  const [testName, setTestName] = React.useState('')
 
     return (
       <View  style = {styles.screen}>
         <View style = {styles.containerStyle}> 
-          <TextInput 
+        <TextInput 
             style={styles.input}
-            name="Player Name"
+            placeholder="Player Name"
             onChangeText={text => setPlayerName(text)}
             value={playerName}
+        />
+        <Text> {playerName} </Text>
+        <Button title="Add Player" onPress={() => 
+          <TextInput 
+            style = {styles.input} 
+            placeholder = "Player Name"
+            onChangeText = {text => setTestName(text)}
           />
-          <Text> Player Name: {playerName} </Text>
-
-          <Button title="Add Player" onPress={() => Alert.alert('This will eventually add another Text Input Field')}/>
+        }  /> 
         </View>
           <Text>EnterPlayers</Text>
           <View>
             <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
           </View>
       </View>
-    )
+  ) 
 }
+
 
 const styles = StyleSheet.create({
   screen: {
@@ -68,3 +71,4 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }
 })
+
