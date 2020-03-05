@@ -10,6 +10,7 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
+import AddNewPlayer from './AddNewPlayer';
 
 export default function EnterPlayers({navigation}) {
   // const [value, onChangeText] = React.useState('Player Name')
@@ -25,14 +26,10 @@ export default function EnterPlayers({navigation}) {
             onChangeText={text => setPlayerName(text)}
             value={playerName}
         />
-        <Text> {playerName} </Text>
-        <Button title="Add Player" onPress={() => 
-          <TextInput 
-            style = {styles.input} 
-            placeholder = "Player Name"
-            onChangeText = {text => setTestName(text)}
-          />
-        }  /> 
+        <Text> Player 1: {playerName} </Text>
+        
+        <AddNewPlayer /> 
+        
         </View>
           <Text>EnterPlayers</Text>
           <View>
