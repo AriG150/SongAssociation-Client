@@ -20,14 +20,14 @@ export default function EnterPlayers({navigation}) {
     return (
       <View  style = {styles.screen}>
         <View style = {styles.containerStyle}> 
-        <TextInput 
+        {/* <TextInput 
             style={styles.input}
             placeholder="Player Name"
             onChangeText={text => setPlayerName(text)}
             value={playerName}
-        />
-        <Text> Player 1: {playerName} </Text>
-        
+        /> */}
+        {/* <Text> Player 1: {playerName} </Text> */}
+
         <AddNewPlayer /> 
         
         </View>
