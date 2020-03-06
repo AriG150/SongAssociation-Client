@@ -14,39 +14,54 @@ import {
 
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
-  const [currentPlayer, setCurrentPlayer] = React.useState('')
+  const [currentPlayer, setCurrentPlayer] = React.useState("")
   
-  const handlePress = (e) => {
-    console.log('hit')
-    return (<Text> Work? </Text>)
-  }
+  // const handlePress = (e) => {
+  //   console.log('hit')
+  //   return (<Text> Work? </Text>)
+  // }
 
-  const handleInput = (input) => {
-    setCurrentPlayer(input)
-    console.log('current player: ',currentPlayer)
-    setListPlayers(listPlayers.push(input))
+  const handleInput = (e) => {
+    setCurrentPlayer(e.nativeEvent.text)
+    console.log('current plaaayer: ', currentPlayer)
+    console.log(e.nativeEvent.text) //123
+    console.log(e.nativeEvent.toString())
+    // setListPlayers(listPlayers.push(input))
     // listPlayers.push(currentPlayer)
-    console.log('listplayer: ', listPlayers)
+    // console.log('listplayer: ', listPlayers)
   }
 
 
   var mappedPlayers;
-  if(listPlayers.length === 0 ){
-    mappedPlayers =
-    <View>
-      <Text> Hello World 
-      </Text>
-      <TextInput 
-        style={styles.input}
-        placeholder="Enter Player Name"
-        onChangeText={input => handleInput(input)} 
-      />
-    </View>
-  } else{
-    mappedPlayers = 
-    console.log("hit");
-    <Button title="+" onPress={handlePress} > </Button>
-  }
+  mappedPlayers = (
+      <View>
+        <Text> Hello World </Text>
+        <TextInput 
+          style={styles.input}
+          placeholder="Enter Player Name"
+          onSubmitEditing={e => handleInput(e)} 
+        />
+      </View>
+    )
+
+
+  // if(listPlayers.length === 0 ){
+  //   mappedPlayers = (
+  //   <View>
+  //     <Text> Hello World 
+  //     </Text>
+  //     <TextInput 
+  //       style={styles.input}
+  //       placeholder="Enter Player Name"
+  //       onSubmitEditing={input => handleInput(input)} 
+  //     />
+  //   </View>
+  //   )
+  // } else{
+  //   mappedPlayers = 
+  //   console.log("hit");
+  //   <Button title="+" onPress={handlePress} > </Button>
+  // }
 
   
   return (
