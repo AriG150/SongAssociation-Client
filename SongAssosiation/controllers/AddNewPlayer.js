@@ -23,10 +23,9 @@ export default function AddNewPlayer () {
 
   const handleInput = (e) => {
     setCurrentPlayer(e.nativeEvent.text)
-    console.log('current plaaayer: ', currentPlayer)
     console.log(e.nativeEvent.text) //123
-    console.log(e.nativeEvent.toString())
-    // setListPlayers(listPlayers.push(input))
+    setListPlayers(listPlayers.push(e.nativeEvent.text))
+    console.log(listPlayers)
     // listPlayers.push(currentPlayer)
     // console.log('listplayer: ', listPlayers)
   }
