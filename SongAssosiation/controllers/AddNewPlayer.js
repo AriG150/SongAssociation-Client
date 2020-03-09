@@ -35,6 +35,7 @@ export default function AddNewPlayer () {
       setListPlayers(tempPlayer)
       index += 1
       console.log(listPlayers)
+      console.log("butts")
     }
 
   class Player {
