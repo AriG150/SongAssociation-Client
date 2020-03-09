@@ -32,7 +32,6 @@ import EnterPlayers from './controllers/EnterPlayers'
 import MainGame from './controllers/MainGame'
 
 
-
 const Stack = createStackNavigator()
 
 export default function App() {
