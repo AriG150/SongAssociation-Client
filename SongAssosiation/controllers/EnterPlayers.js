@@ -19,8 +19,8 @@ export default function EnterPlayers({navigation}) {
 
     return (
       <View  style = {styles.screen}>
-        <View style = {styles.containerStyle}> 
-        {/* <TextInput 
+        <View style = {styles.containerStyle}>
+        {/* <TextInput
             style={styles.input}
             placeholder="Player Name"
             onChangeText={text => setPlayerName(text)}
@@ -28,22 +28,22 @@ export default function EnterPlayers({navigation}) {
         /> */}
         {/* <Text> Player 1: {playerName} </Text> */}
 
-        <AddNewPlayer /> 
-        
+        <AddNewPlayer />
+
         </View>
           <Text>EnterPlayers</Text>
           <View>
-            <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
+            <Button onPress={() => navigation.navigate('MainGame')} title="Play!"/>
           </View>
       </View>
-  ) 
+  )
 }
 
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1, 
-    // justifyContent: 'center', 
+    // flex: 1,
+    // justifyContent: 'center',
     // alignItems: 'center'
     flex: 1,
     paddingHorizontal: 50,
@@ -68,4 +68,3 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }
 })
-
