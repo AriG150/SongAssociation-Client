@@ -16,25 +16,28 @@ export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
   const [currentPlayer, setCurrentPlayer] = React.useState("")
   
-  // const handlePress = (e) => {
-  //   console.log('hit')
-  //   return (<Text> Work? </Text>)
-  // }
+  const handlePress = (e) => {
+    console.log('handle press')
+    return (<Text> Work? </Text>)
+  }
 
   const handleInput = (e) => {
     setCurrentPlayer(e.nativeEvent.text)
-    console.log(e.nativeEvent.text) //123
-    setListPlayers(listPlayers.push(e.nativeEvent.text))
-    console.log(listPlayers)
-    // listPlayers.push(currentPlayer)
-    // console.log('listplayer: ', listPlayers)
+    setListPlayers(e.nativeEvent.text)
+    // setListPlayers(listPlayers.push(e.nativeEvent.text))
+    console.log('List players: ',listPlayers)
   }
 
+  var button;
+  button = (
+    <Button title="+" onPress={handlePress} > </Button>
+  )
 
   var mappedPlayers;
-  mappedPlayers = (
+  if(!listPlayers.length ){
+    mappedPlayers = (
       <View>
-        <Text> Hello World </Text>
+        <Text> Enter Player Name </Text>
         <TextInput 
           style={styles.input}
           placeholder="Enter Player Name"
@@ -42,43 +45,32 @@ export default function AddNewPlayer () {
         />
       </View>
     )
-
-
-  // if(listPlayers.length === 0 ){
-  //   mappedPlayers = (
-  //   <View>
-  //     <Text> Hello World 
-  //     </Text>
-  //     <TextInput 
-  //       style={styles.input}
-  //       placeholder="Enter Player Name"
-  //       onSubmitEditing={input => handleInput(input)} 
-  //     />
-  //   </View>
-  //   )
-  // } else{
-  //   mappedPlayers = 
-  //   console.log("hit");
-  //   <Button title="+" onPress={handlePress} > </Button>
-  // }
+  } 
+  else if (listPlayers.length >= 1) {
+    mappedPlayers = (
+      <View>
+        <Text> Enter Player Names </Text>
+          <TextInput 
+            style={styles.input}
+            placeholder="Enter Player Name"
+            onSubmitEditing={e => handleInput(e)} 
+          />
+        {button}
+      </View>
+    )
+  }
 
   
   return (
     <View>
       {mappedPlayers}
-      {/* {listPlayers} */}
-      <Text> 
-      {currentPlayer}
-
-      </Text>
     </View>
-
   )
 }
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: "blue",
+    backgroundColor: "#ebebeb",
     width: 100,
     height: 50
   }
