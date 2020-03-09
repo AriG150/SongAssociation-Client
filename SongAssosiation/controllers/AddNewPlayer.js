@@ -15,22 +15,29 @@ import {
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
   const [currentPlayer, setCurrentPlayer] = React.useState("")
+
   
+  var newField;
   const handlePress = (e) => {
     console.log('handle press')
-    return (<Text> Work? </Text>)
+    console.log(listPlayers)
+    console.log(currentPlayer)
+    return (
+      newField = (
+        <Text> Please show up </Text>
+      )
+    )
   }
 
   const handleInput = (e) => {
-    setCurrentPlayer(e.nativeEvent.text)
+    // setCurrentPlayer(e.nativseEvent.text)
     setListPlayers(e.nativeEvent.text)
-    // setListPlayers(listPlayers.push(e.nativeEvent.text))
-    console.log('List players: ',listPlayers)
+    console.log('List players: ', listPlayers)
   }
 
   var button;
   button = (
-    <Button title="+" onPress={handlePress} > </Button>
+    <Button title="+" onPress={e => handlePress(e)} > </Button>
   )
 
   var mappedPlayers;
@@ -39,7 +46,7 @@ export default function AddNewPlayer () {
       <View>
         <Text> Enter Player Name </Text>
         <TextInput 
-          style={styles.input}
+          // style={styles.input}
           placeholder="Enter Player Name"
           onSubmitEditing={e => handleInput(e)} 
         />
@@ -51,7 +58,7 @@ export default function AddNewPlayer () {
       <View>
         <Text> Enter Player Names </Text>
           <TextInput 
-            style={styles.input}
+            // style={styles.input}
             placeholder="Enter Player Name"
             onSubmitEditing={e => handleInput(e)} 
           />
@@ -62,8 +69,11 @@ export default function AddNewPlayer () {
 
   
   return (
-    <View>
+    <View 
+      style={styles.input} 
+    >
       {mappedPlayers}
+      {newField}
     </View>
   )
 }
