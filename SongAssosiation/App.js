@@ -29,7 +29,7 @@ import {
 import {createStackNavigator} from '@react-navigation/stack'
 import Title from './controllers/Title'
 import EnterPlayers from './controllers/EnterPlayers'
-import CountDown from './controllers/CountDown'
+import MainGame from './controllers/MainGame'
 
 
 
@@ -38,11 +38,11 @@ const Stack = createStackNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Title" component={Title} />
-        <Stack.Screen name="EnterPlayers" component={EnterPlayers} />
-        <Stack.Screen name="CountDown" component={CountDown} />
-      </Stack.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Title" component={Title} />
+          <Stack.Screen name="EnterPlayers" component={EnterPlayers} />
+          <Stack.Screen name="MainGame" component={MainGame} />
+        </Stack.Navigator>
     </NavigationContainer>
   );
 };

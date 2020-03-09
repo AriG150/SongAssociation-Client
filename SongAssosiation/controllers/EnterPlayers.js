@@ -11,11 +11,11 @@ import {
 
 export default function EnterPlayers({navigation}) {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>EnterPlayers</Text>
         <View>
-          <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
+          <Text>Enter Players</Text>
+          <View>
+            <Button onPress={() => navigation.navigate('MainGame')} title="Play!"/>
+          </View>
         </View>
-      </View>
     )
 }
