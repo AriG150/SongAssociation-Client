@@ -9,7 +9,7 @@ const {Value} = Animated
 
 import Card from './Card'
 
-
+let newWord = 'hi'
 let word = 'hi'
 
 let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
