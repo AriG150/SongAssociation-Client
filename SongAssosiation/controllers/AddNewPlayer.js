@@ -1,33 +1,48 @@
 import React from 'react';
+import { FlatList } from 'react-native-gesture-handler';
 import {
-  Alert,
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   TextInput,
-  StatusBar,
   Button,
-  TouchableOpacity
 } from 'react-native';
 
 let index = 0;
 
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
-  const [currentPlayer, setCurrentPlayer] = React.useState("")
+  // const [currentPlayer, setCurrentPlayer] = React.useState("")
 
-  var newField;
+// Class to create the Players information. Stored in ListPlayer through 'handleInput'
+  class Player {
+    constructor (key, name) {
+      this.index = index;
+      this.name = name;
+      this.score = 0
+    }
+  }
+
+  // var newField;
   const handlePress = (e) => {
     console.log('handle press')
     console.log(listPlayers)
     return (
-      newField = (
-        <Text> Please show up </Text>
-      )
+      <FlatList 
+        data={listPlayers}
+        renderItem={ ({item}) => (
+          <ListItem 
+            name = {`${item}`}
+            /> 
+          // <TextInput 
+          //   placeholder="Enter Player Name"
+          //   onSubmitEditing={e => handleInput(e)}
+          //   />
+        ) }
+      />
     )
   }
+
 
     const handleInput = (e) => {
       var player = new Player(index, e.nativeEvent.text)
@@ -75,7 +90,6 @@ export default function AddNewPlayer () {
           clearButtonMode="always"
         />
       </View>
-    </View>
   )
 }
 
