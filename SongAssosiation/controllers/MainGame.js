@@ -21,27 +21,29 @@ let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
 
 export default function MainGame({navigation}) {
   const [count, setCount] = useState(5);
-  const pos = React.useRef(new Animated.ValueXY())
+  const pos = new Animated.ValueXY()
   const [position, setPosition] = useState(pos)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [wordList, setWordList] = useState(words)
-  // const rotate = position.x.interpolate({
-  //   inputRange: [-width /2, 0 ,width/2],
-  //   outputRange: ['-10deg', '0deg', '10deg'],
-  //   extrapolate: 'clamp'
-  // })
+
   const last = wordList[0]
   const panResponder = React.useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: (evt, gestureState) => true,
     onPanResponderMove: Animated.event([null, {
-      dx  : pos.current.x,
-      dy  : pos.current.y
+      dx  : pos.x,
+      dy  : pos.y
     }]),
     onPanResponderRelease: (evt, gestureState) => {
 
     }
 
   }), [])
+  console.log(pos)
+  const rotate = position.x.interpolate({
+    inputRange: [-width /2, 0 ,width/2],
+    outputRange: ['-10deg', '0deg', '10deg'],
+    extrapolate: 'clamp'
+  })
 
   useEffect(() => {
     if (count > 0) {
@@ -60,7 +62,7 @@ export default function MainGame({navigation}) {
       }
     if (i === currentIndex) {
       return (
-        <Animated.View key={i} {...panResponder.panHandlers} style={[pos.current.getLayout(), style.card]}>
+        <Animated.View key={i} {...panResponder.panHandlers} style={[pos.getTranslateTransform(), style.card]}>
           <Card word={word} />
         </Animated.View>
       )

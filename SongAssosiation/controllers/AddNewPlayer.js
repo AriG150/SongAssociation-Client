@@ -15,34 +15,6 @@ export default function AddNewPlayer () {
   // const [currentPlayer, setCurrentPlayer] = React.useState("")
 
 // Class to create the Players information. Stored in ListPlayer through 'handleInput'
-  class Player {
-    constructor (key, name) {
-      this.index = index;
-      this.name = name;
-      this.score = 0
-    }
-  }
-
-  // var newField;
-  const handlePress = (e) => {
-    console.log('handle press')
-    console.log(listPlayers)
-    return (
-      <FlatList 
-        data={listPlayers}
-        renderItem={ ({item}) => (
-          <ListItem 
-            name = {`${item}`}
-            /> 
-          // <TextInput 
-          //   placeholder="Enter Player Name"
-          //   onSubmitEditing={e => handleInput(e)}
-          //   />
-        ) }
-      />
-    )
-  }
-
 
     const handleInput = (e) => {
       var player = new Player(index, e.nativeEvent.text)
@@ -88,8 +60,10 @@ export default function AddNewPlayer () {
           placeholder="Enter Player Name"
           onSubmitEditing={e => handleInput(e)}
           clearButtonMode="always"
+
         />
       </View>
+    </View>
   )
 }
 
