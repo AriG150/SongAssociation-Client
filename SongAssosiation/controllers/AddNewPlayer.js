@@ -42,57 +42,54 @@ export default function AddNewPlayer () {
       />
     )
   }
-  
-  //runs after users presses enter on input field
-  const handleInput = (e) => {
-    var player = new Player(index, e.nativeEvent.text)
-    var tempPlayer = [...listPlayers, player]
-    setListPlayers(tempPlayer)
-    index += 1
-    console.log(listPlayers)
+
+
+    const handleInput = (e) => {
+      var player = new Player(index, e.nativeEvent.text)
+      var tempPlayer = [...listPlayers, player]
+      setListPlayers(tempPlayer)
+      index += 1
+      console.log(listPlayers)
+    }
+
+  class Player {
+    constructor (key, name) {
+      this.index = index;
+      this.name = name;
+      this.score = 0
+    }
   }
 
-//conditional rendering depending on how many players are signed up
-  var mappedPlayers;
-  if(!listPlayers.length ){
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Name </Text>
-        <TextInput 
-          // style={styles.input}
-          placeholder="Enter Player Name"
-          onSubmitEditing={e => handleInput(e)} 
-        />
-      </View>
-    )
-  } 
-  else if (listPlayers.length >= 1) {
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Names </Text>
-          <TextInput 
-            // style={styles.input}
-            placeholder="Enter Player Name"
-            onSubmitEditing={e => handleInput(e)} 
+  const mappedPlayers = listPlayers.map((player, i) => {
+    if(listPlayers.length) {
+      return (
+        <View>
+          <TextInput
+            key={i}
+            style={styles.input}
+            value={player.name}
+            onSubmitEditing={e => handleInput(e)}
           />
-          <TextInput 
-            // style={styles.input}
-            placeholder="Enter Player Name"
-            onSubmitEditing={e => handleInput(e)} 
-          />
-        {/* <Button title="+" onPress={e => handlePress(e)} > </Button> */}
-        <Button title="+" onPress={e => handlePress(e)} > </Button>
-      </View>
-    )
-  }
+        </View>
+      )
+    }
+  })
 
-  
   return (
-    <View 
+    <View
       style={styles.input}
     >
+      <Text> Enter Player Names </Text>
+
       {mappedPlayers}
-    </View>
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Player Name"
+          onSubmitEditing={e => handleInput(e)}
+          clearButtonMode="always"
+        />
+      </View>
   )
 }
 

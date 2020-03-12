@@ -24,17 +24,17 @@ export default function EnterPlayers({navigation}) {
         </View>
           <Text>EnterPlayers</Text>
           <View>
-            <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
+            <Button onPress={() => navigation.navigate('MainGame')} title="Play!"/>
           </View>
       </View>
-  ) 
+  )
 }
 
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1, 
-    // justifyContent: 'center', 
+    // flex: 1,
+    // justifyContent: 'center',
     // alignItems: 'center'
     flex: 1,
     paddingHorizontal: 50,
@@ -59,4 +59,3 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }
 })
-
