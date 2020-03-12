@@ -1,43 +1,20 @@
 import React from 'react';
+import { FlatList } from 'react-native-gesture-handler';
 import {
-  Alert,
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   TextInput,
-  StatusBar,
   Button,
-  TouchableOpacity
 } from 'react-native';
 
 let index = 0;
 
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
-  const [currentPlayer, setCurrentPlayer] = React.useState("")
+  // const [currentPlayer, setCurrentPlayer] = React.useState("")
 
-  var newField;
-  const handlePress = (e) => {
-    console.log('handle press')
-    console.log(listPlayers)
-    return (
-      newField = (
-        <Text> Please show up </Text>
-      )
-    )
-  }
-  
-    const handleInput = (e) => {
-      var player = new Player(index, e.nativeEvent.text)
-      var tempPlayer = [...listPlayers, player]
-      setListPlayers(tempPlayer)
-      index += 1
-      console.log(listPlayers)
-      console.log("butts")
-    }
-
+// Class to create the Players information. Stored in ListPlayer through 'handleInput'
   class Player {
     constructor (key, name) {
       this.index = index;
@@ -46,6 +23,36 @@ export default function AddNewPlayer () {
     }
   }
 
+  // var newField;
+  const handlePress = (e) => {
+    console.log('handle press')
+    console.log(listPlayers)
+    return (
+      <FlatList 
+        data={listPlayers}
+        renderItem={ ({item}) => (
+          <ListItem 
+            name = {`${item}`}
+            /> 
+          // <TextInput 
+          //   placeholder="Enter Player Name"
+          //   onSubmitEditing={e => handleInput(e)}
+          //   />
+        ) }
+      />
+    )
+  }
+  
+  //runs after users presses enter on input field
+  const handleInput = (e) => {
+    var player = new Player(index, e.nativeEvent.text)
+    var tempPlayer = [...listPlayers, player]
+    setListPlayers(tempPlayer)
+    index += 1
+    console.log(listPlayers)
+  }
+
+//conditional rendering depending on how many players are signed up
   var mappedPlayers;
   if(!listPlayers.length ){
     mappedPlayers = (
@@ -55,7 +62,6 @@ export default function AddNewPlayer () {
           // style={styles.input}
           placeholder="Enter Player Name"
           onSubmitEditing={e => handleInput(e)} 
-          // onSubmitEditing={}
         />
       </View>
     )
@@ -69,6 +75,12 @@ export default function AddNewPlayer () {
             placeholder="Enter Player Name"
             onSubmitEditing={e => handleInput(e)} 
           />
+          <TextInput 
+            // style={styles.input}
+            placeholder="Enter Player Name"
+            onSubmitEditing={e => handleInput(e)} 
+          />
+        {/* <Button title="+" onPress={e => handlePress(e)} > </Button> */}
         <Button title="+" onPress={e => handlePress(e)} > </Button>
       </View>
     )
@@ -80,7 +92,6 @@ export default function AddNewPlayer () {
       style={styles.input}
     >
       {mappedPlayers}
-      {/* {newField} */}
     </View>
   )
 }
