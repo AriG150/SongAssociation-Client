@@ -28,7 +28,7 @@ export default function AddNewPlayer () {
       )
     )
   }
-  
+
     const handleInput = (e) => {
       var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
@@ -45,41 +45,36 @@ export default function AddNewPlayer () {
     }
   }
 
-  var mappedPlayers;
-  if(!listPlayers.length ){
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Name </Text>
-        <TextInput 
-          // style={styles.input}
-          placeholder="Enter Player Name"
-          onSubmitEditing={e => handleInput(e)} 
-          // onSubmitEditing={}
-        />
-      </View>
-    )
-  } 
-  else if (listPlayers.length >= 1) {
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Names </Text>
-          <TextInput 
-            // style={styles.input}
-            placeholder="Enter Player Name"
-            onSubmitEditing={e => handleInput(e)} 
+  const mappedPlayers = listPlayers.map((player, i) => {
+    if(listPlayers.length) {
+      return (
+        <View>
+          <TextInput
+            key={i}
+            style={styles.input}
+            value={player.name}
+            onSubmitEditing={e => handleInput(e)}
           />
-        <Button title="+" onPress={e => handlePress(e)} > </Button>
-      </View>
-    )
-  }
+        </View>
+      )
+    }
+  })
 
-  
   return (
-    <View 
+    <View
       style={styles.input}
     >
+      <Text> Enter Player Names </Text>
+
       {mappedPlayers}
-      {/* {newField} */}
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Player Name"
+          onSubmitEditing={e => handleInput(e)}
+          clearButtonMode="always"
+        />
+      </View>
     </View>
   )
 }
