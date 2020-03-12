@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -12,26 +12,38 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+let index = 0;
+
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
   const [currentPlayer, setCurrentPlayer] = React.useState("")
-  
+
+  var newField;
   const handlePress = (e) => {
     console.log('handle press')
-    return (<Text> Work? </Text>)
+    console.log(listPlayers)
+    return (
+      newField = (
+        <Text> Please show up </Text>
+      )
+    )
   }
+  
+    const handleInput = (e) => {
+      var player = new Player(index, e.nativeEvent.text)
+      var tempPlayer = [...listPlayers, player]
+      setListPlayers(tempPlayer)
+      index += 1
+      console.log(listPlayers)
+    }
 
-  const handleInput = (e) => {
-    setCurrentPlayer(e.nativeEvent.text)
-    setListPlayers(e.nativeEvent.text)
-    // setListPlayers(listPlayers.push(e.nativeEvent.text))
-    console.log('List players: ',listPlayers)
+  class Player {
+    constructor (key, name) {
+      this.index = index;
+      this.name = name;
+      this.score = 0
+    }
   }
-
-  var button;
-  button = (
-    <Button title="+" onPress={handlePress} > </Button>
-  )
 
   var mappedPlayers;
   if(!listPlayers.length ){
@@ -39,9 +51,10 @@ export default function AddNewPlayer () {
       <View>
         <Text> Enter Player Name </Text>
         <TextInput 
-          style={styles.input}
+          // style={styles.input}
           placeholder="Enter Player Name"
           onSubmitEditing={e => handleInput(e)} 
+          // onSubmitEditing={}
         />
       </View>
     )
@@ -51,19 +64,22 @@ export default function AddNewPlayer () {
       <View>
         <Text> Enter Player Names </Text>
           <TextInput 
-            style={styles.input}
+            // style={styles.input}
             placeholder="Enter Player Name"
             onSubmitEditing={e => handleInput(e)} 
           />
-        {button}
+        <Button title="+" onPress={e => handlePress(e)} > </Button>
       </View>
     )
   }
 
   
   return (
-    <View>
+    <View 
+      style={styles.input}
+    >
       {mappedPlayers}
+      {/* {newField} */}
     </View>
   )
 }

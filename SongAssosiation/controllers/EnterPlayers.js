@@ -19,17 +19,8 @@ export default function EnterPlayers({navigation}) {
 
     return (
       <View  style = {styles.screen}>
-        <View style = {styles.containerStyle}>
-        {/* <TextInput
-            style={styles.input}
-            placeholder="Player Name"
-            onChangeText={text => setPlayerName(text)}
-            value={playerName}
-        /> */}
-        {/* <Text> Player 1: {playerName} </Text> */}
-
-        <AddNewPlayer />
-
+        <View style = {styles.containerStyle}> 
+          <AddNewPlayer /> 
         </View>
           <Text>EnterPlayers</Text>
           <View>
