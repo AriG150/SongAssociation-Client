@@ -15,6 +15,15 @@ export default function AddNewPlayer () {
   // const [currentPlayer, setCurrentPlayer] = React.useState("")
 
 // Class to create the Players information. Stored in ListPlayer through 'handleInput'
+
+    const handleInput = (e) => {
+      var player = new Player(index, e.nativeEvent.text)
+      var tempPlayer = [...listPlayers, player]
+      setListPlayers(tempPlayer)
+      index += 1
+      console.log(listPlayers)
+    }
+
   class Player {
     constructor (key, name) {
       this.index = index;
@@ -23,13 +32,15 @@ export default function AddNewPlayer () {
     }
   }
 
-  const mappedPlayers = listPlayers.map((player, index) => {
-    if(listPlayers.length <= 0) {
-      return(
+  const mappedPlayers = listPlayers.map((player, i) => {
+    if(listPlayers.length) {
+      return (
         <View>
-          <Text> GobblyGook! </Text>
-          <TextInput 
-            placeholder = "Input Name of Player"
+          <TextInput
+            key={i}
+            style={styles.input}
+            value={player.name}
+            onSubmitEditing={e => handleInput(e)}
           />
         </View>
       )
@@ -37,10 +48,21 @@ export default function AddNewPlayer () {
   })
 
   return (
-    <View 
+    <View
       style={styles.input}
     >
+      <Text> Enter Player Names </Text>
+
       {mappedPlayers}
+      <View>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Player Name"
+          onSubmitEditing={e => handleInput(e)}
+          clearButtonMode="always"
+
+        />
+      </View>
     </View>
   )
 }
