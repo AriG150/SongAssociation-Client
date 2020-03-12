@@ -23,70 +23,19 @@ export default function AddNewPlayer () {
     }
   }
 
-  // var newField;
-  const handlePress = (e) => {
-    console.log('handle press')
-    console.log(listPlayers)
-    return (
-      <FlatList 
-        data={listPlayers}
-        renderItem={ ({item}) => (
-          <ListItem 
-            name = {`${item}`}
-            /> 
-          // <TextInput 
-          //   placeholder="Enter Player Name"
-          //   onSubmitEditing={e => handleInput(e)}
-          //   />
-        ) }
-      />
-    )
-  }
-  
-  //runs after users presses enter on input field
-  const handleInput = (e) => {
-    var player = new Player(index, e.nativeEvent.text)
-    var tempPlayer = [...listPlayers, player]
-    setListPlayers(tempPlayer)
-    index += 1
-    console.log(listPlayers)
-  }
-
-//conditional rendering depending on how many players are signed up
-  var mappedPlayers;
-  if(!listPlayers.length ){
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Name </Text>
-        <TextInput 
-          // style={styles.input}
-          placeholder="Enter Player Name"
-          onSubmitEditing={e => handleInput(e)} 
-        />
-      </View>
-    )
-  } 
-  else if (listPlayers.length >= 1) {
-    mappedPlayers = (
-      <View>
-        <Text> Enter Player Names </Text>
+  const mappedPlayers = listPlayers.map((player, index) => {
+    if(listPlayers.length <= 0) {
+      return(
+        <View>
+          <Text> GobblyGook! </Text>
           <TextInput 
-            // style={styles.input}
-            placeholder="Enter Player Name"
-            onSubmitEditing={e => handleInput(e)} 
+            placeholder = "Input Name of Player"
           />
-          <TextInput 
-            // style={styles.input}
-            placeholder="Enter Player Name"
-            onSubmitEditing={e => handleInput(e)} 
-          />
-        {/* <Button title="+" onPress={e => handlePress(e)} > </Button> */}
-        <Button title="+" onPress={e => handlePress(e)} > </Button>
-      </View>
-    )
-  }
+        </View>
+      )
+    }
+  })
 
-  
   return (
     <View 
       style={styles.input}

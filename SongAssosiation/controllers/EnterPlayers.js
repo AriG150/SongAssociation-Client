@@ -13,10 +13,6 @@ import {
 import AddNewPlayer from './AddNewPlayer';
 
 export default function EnterPlayers({navigation}) {
-  // const [value, onChangeText] = React.useState('Player Name')
-  const [playerName, setPlayerName] = React.useState('')
-  const [testName, setTestName] = React.useState('')
-
     return (
       <View  style = {styles.screen}>
         <View style = {styles.containerStyle}> 
