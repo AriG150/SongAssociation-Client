@@ -21,11 +21,9 @@ let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
 
 export default function MainGame({navigation}) {
   const [count, setCount] = useState(5);
-  const pos = new Animated.ValueXY()
-  const [position, setPosition] = useState(pos)
+  const [pos, setPos] = useState(new Animated.ValueXY())
   const [currentIndex, setCurrentIndex] = useState(0)
   const [wordList, setWordList] = useState(words)
-
   const last = wordList[0]
   const panResponder = React.useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -38,8 +36,8 @@ export default function MainGame({navigation}) {
     }
 
   }), [])
-  console.log(pos)
-  const rotate = position.x.interpolate({
+
+  const rotation = pos.x.interpolate({
     inputRange: [-width /2, 0 ,width/2],
     outputRange: ['-10deg', '0deg', '10deg'],
     extrapolate: 'clamp'
@@ -62,12 +60,18 @@ export default function MainGame({navigation}) {
       }
     if (i === currentIndex) {
       return (
-        <Animated.View key={i} {...panResponder.panHandlers} style={[pos.getTranslateTransform(), style.card]}>
+        <Animated.View key={i}
+          {...panResponder.panHandlers}
+          style={[ pos.getLayout(),
+            {transform: [{rotate:rotation}]},
+            style.card,
+            {backgroundColor: 'black'}
+          ]}>
           <Card word={word} />
         </Animated.View>
       )
     }
-    else {
+    else if (i < 25){
       return(
         <Animated.View key={i} style={style.card}>
           <Card word={word} />
