@@ -25,8 +25,8 @@ const SWIPETHRESH = Dimensions.get('window').width * .3
 
 export default function MainGame({navigation}) {
   const [count, setCount] = useState(5);
-  const pos = React.useRef(new Animated.ValueXY())
-  const [position, setPosition] = useState(pos)
+  const [pos, setPos] = useState(new Animated.ValueXY())
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [wordList, setWordList] = useState(words)
   const last = wordList[0]
   const panResponder = React.useMemo(() => PanResponder.create({
@@ -38,6 +38,12 @@ export default function MainGame({navigation}) {
 
   }), [])
 
+  const rotation = pos.x.interpolate({
+    inputRange: [-width /2, 0 ,width/2],
+    outputRange: ['-10deg', '0deg', '10deg'],
+    extrapolate: 'clamp'
+  })
+  
   useEffect(() => {
     if (count > 0) {
       const interval = setInterval(() => {
@@ -50,10 +56,31 @@ export default function MainGame({navigation}) {
     }
   })
   const cards = wordList.map((word, i) => {
-    return (
-      <Card word={word} key={i}/>
-    )
-  })
+
+    if (i < currentIndex) {
+        return null
+      }
+    if (i === currentIndex) {
+      return (
+        <Animated.View key={i}
+          {...panResponder.panHandlers}
+          style={[ pos.getLayout(),
+            {transform: [{rotate:rotation}]},
+            style.card,
+            {backgroundColor: 'black'}
+          ]}>
+          <Card word={word} />
+        </Animated.View>
+      )
+    }
+    else if (i < 25){
+      return(
+        <Animated.View key={i} style={style.card}>
+          <Card word={word} />
+        </Animated.View>
+      )
+    }
+  }).reverse()
     return (
         <SafeAreaView style={style.container}>
           <View style={style.header}>
