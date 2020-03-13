@@ -13,10 +13,6 @@ import {
 import AddNewPlayer from './AddNewPlayer';
 
 export default function EnterPlayers({navigation}) {
-  // const [value, onChangeText] = React.useState('Player Name')
-  const [playerName, setPlayerName] = React.useState('')
-  const [testName, setTestName] = React.useState('')
-
     return (
       <View  style = {styles.screen}>
         <View style = {styles.containerStyle}> 
@@ -24,17 +20,17 @@ export default function EnterPlayers({navigation}) {
         </View>
           <Text>EnterPlayers</Text>
           <View>
-            <Button onPress={() => navigation.navigate('MainGame')} title="Play!"/>
+            <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
           </View>
       </View>
-  )
+  ) 
 }
 
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1,
-    // justifyContent: 'center',
+    // flex: 1, 
+    // justifyContent: 'center', 
     // alignItems: 'center'
     flex: 1,
     paddingHorizontal: 50,
@@ -59,3 +55,4 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }
 })
+

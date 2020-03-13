@@ -12,16 +12,15 @@ let index = 0;
 
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
-  // const [currentPlayer, setCurrentPlayer] = React.useState("")
-
-// Class to create the Players information. Stored in ListPlayer through 'handleInput'
+  
 
     const handleInput = (e) => {
+      console.log(listPlayers)
       var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
       setListPlayers(tempPlayer)
       index += 1
-      console.log(listPlayers)
+      this.textInput.clear()
     }
 
   class Player {
@@ -41,18 +40,15 @@ export default function AddNewPlayer () {
             style={styles.input}
             value={player.name}
             onSubmitEditing={e => handleInput(e)}
-          />
+            />
         </View>
       )
     }
   })
 
   return (
-    <View
-      style={styles.input}
-    >
+    <View>
       <Text> Enter Player Names </Text>
-
       {mappedPlayers}
       <View>
         <TextInput
@@ -60,7 +56,7 @@ export default function AddNewPlayer () {
           placeholder="Enter Player Name"
           onSubmitEditing={e => handleInput(e)}
           clearButtonMode="always"
-
+          ref={input => { this.textInput = input }}
         />
       </View>
     </View>

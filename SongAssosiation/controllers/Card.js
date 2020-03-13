@@ -19,9 +19,7 @@ export default function Card(props) {
 
 const style = StyleSheet.create({
   card: {
-    backgroundColor: 'blue',
-    position: 'absolute',
     flex: 1,
-    marginLeft: 16,
-  },
+    flexDirection: 'row'
+  }
 })

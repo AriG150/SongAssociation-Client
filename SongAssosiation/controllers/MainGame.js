@@ -9,7 +9,7 @@ const {Value} = Animated
 
 import Card from './Card'
 
-let newWord = 'hi'
+
 let word = 'hi'
 
 let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
@@ -18,6 +18,10 @@ let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
 'girl', 'fire', 'lady', 'best', 'lost', 'all', 'real', 'burn', 'somebody', 'run', 'sorry', 'pretty', 'war', 'stay', 'slow', 'world',
 'song', 'ring', 'cream', 'care', 'have', 'need', 'hold', 'god', 'deep', 'together',
 'imagine', 'freedom', 'man', 'boy', 'you', 'kiss', 'hey']
+
+
+const SWIPETHRESH = Dimensions.get('window').width * .3
+
 
 export default function MainGame({navigation}) {
   const [count, setCount] = useState(5);
@@ -28,12 +32,9 @@ export default function MainGame({navigation}) {
   const panResponder = React.useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: (evt, gestureState) => true,
     onPanResponderMove: Animated.event([null, {
-      dx  : pos.x,
-      dy  : pos.y
-    }]),
-    onPanResponderRelease: (evt, gestureState) => {
-
-    }
+      dx  : pos.current.x,
+      dy  : pos.current.y
+    }])
 
   }), [])
 
@@ -42,7 +43,7 @@ export default function MainGame({navigation}) {
     outputRange: ['-10deg', '0deg', '10deg'],
     extrapolate: 'clamp'
   })
-
+  
   useEffect(() => {
     if (count > 0) {
       const interval = setInterval(() => {
@@ -55,6 +56,7 @@ export default function MainGame({navigation}) {
     }
   })
   const cards = wordList.map((word, i) => {
+
     if (i < currentIndex) {
         return null
       }
@@ -81,11 +83,17 @@ export default function MainGame({navigation}) {
   }).reverse()
     return (
         <SafeAreaView style={style.container}>
-
-          <View>
-            {cards}
+          <View style={style.header}>
+            <Text>CountDown</Text>
           </View>
-
+          <View style={style.count}>
+            <Text style={style.count}>{count}</Text>
+          </View>
+          <View>
+            <Animated.View {...panResponder.panHandlers} style={[pos.current.getLayout(), style.ball]}>
+              <Card word={word[0]} />
+            </Animated.View>
+          </View>
         </SafeAreaView>
     )
 }
@@ -94,24 +102,22 @@ export default function MainGame({navigation}) {
 const style = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-evenly'
   },
   header: {
     flex: 1
   },
   count: {
-    flex: 1,
     color: 'black',
     fontSize: 50,
   },
   card: {
     backgroundColor: 'blue',
     position: 'absolute',
-    flex: 2,
-    zIndex: 1,
+    flex: 1,
     width: w,
-    height: height- 140,
+    height: height- 120,
     marginLeft: 16,
-    borderRadius:20,
   },
   ball: {
      height: 80,
