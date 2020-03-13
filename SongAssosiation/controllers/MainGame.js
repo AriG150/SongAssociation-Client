@@ -43,7 +43,7 @@ export default function MainGame({navigation}) {
     outputRange: ['-10deg', '0deg', '10deg'],
     extrapolate: 'clamp'
   })
-
+  
   useEffect(() => {
     if (count > 0) {
       const interval = setInterval(() => {
