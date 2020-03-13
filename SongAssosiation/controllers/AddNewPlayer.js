@@ -1,5 +1,5 @@
+
 import React from 'react';
-import { FlatList } from 'react-native-gesture-handler';
 import {
   StyleSheet,
   View,
@@ -12,7 +12,6 @@ let index = 0;
 
 export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
-  
 
     const handleInput = (e) => {
       console.log(listPlayers)
@@ -36,8 +35,8 @@ export default function AddNewPlayer () {
       return (
         <View>
           <TextInput
-            key={i}
             style={styles.input}
+            key={i}
             value={player.name}
             onSubmitEditing={e => handleInput(e)}
             />
@@ -48,25 +47,33 @@ export default function AddNewPlayer () {
 
   return (
     <View>
-      <Text> Enter Player Names </Text>
+      <Text style = {styles.instruction}> Enter Player Names </Text>
       {mappedPlayers}
-      <View>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Player Name"
-          onSubmitEditing={e => handleInput(e)}
-          clearButtonMode="always"
-          ref={input => { this.textInput = input }}
-        />
-      </View>
+      <TextInput
+        style = {styles.input}
+        placeholder="Enter Player Name"
+        onSubmitEditing={e => handleInput(e)}
+        clearButtonMode="always"
+        //passing function to the ref prop, function receives DOM input, pass to arrow function, and then stick to variable called textInput which is equal to input tag
+        ref={input => { this.textInput = input }}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  instruction: {
+    fontSize: 20,
+    width: 180,
+    height: 40
+  },
   input: {
-    backgroundColor: "#ebebeb",
-    width: 100,
-    height: 50
+    padding: 15,
+    margin: 10,
+    width: 170,
+    fontSize: 20,
+    borderRadius: 50,
+    backgroundColor: '#b1d1e6',
+    justifyContent: 'center'
   }
 })

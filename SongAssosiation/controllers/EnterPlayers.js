@@ -1,6 +1,6 @@
+
 import React, {Component} from 'react';
 import {
-  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -10,17 +10,17 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
+
 import AddNewPlayer from './AddNewPlayer';
 
 export default function EnterPlayers({navigation}) {
     return (
-      <View  style = {styles.screen}>
-        <View style = {styles.containerStyle}> 
-          <AddNewPlayer /> 
+      <View  style={styles.screen}>
+        <View style = {styles.card}> 
+          <AddNewPlayer/> 
         </View>
-          <Text>EnterPlayers</Text>
           <View>
-            <Button onPress={() => navigation.navigate('CountDown')} title="Play!"/>
+            <Button onPress={() => navigation.navigate('CountDown')} title="Start Game!"/>
           </View>
       </View>
   ) 
@@ -29,30 +29,21 @@ export default function EnterPlayers({navigation}) {
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1, 
-    // justifyContent: 'center', 
-    // alignItems: 'center'
     flex: 1,
-    paddingHorizontal: 50,
-    paddingVertical: 0,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     justifyContent: 'center',
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#f7f7f7',
     alignItems: 'center'
   },
-  input: {
-    backgroundColor: "red",
-    width: 100,
-    height: 50
-  },
-  containerStyle: {
+  card: {
     flex: 1,
     backgroundColor: '#fff',
-    marginVertical: 60,
-    // marginHorizontal: 50,
-    paddingHorizontal: 120,
     borderWidth: 1,
     borderColor: '#999',
     borderRadius: 6,
+    marginVertical: 60,
+    paddingHorizontal: 120,
   }
 })
 

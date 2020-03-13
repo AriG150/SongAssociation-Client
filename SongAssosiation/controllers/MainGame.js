@@ -56,7 +56,6 @@ export default function MainGame({navigation}) {
     }
   })
   const cards = wordList.map((word, i) => {
-
     if (i < currentIndex) {
         return null
       }
@@ -120,11 +119,11 @@ const style = StyleSheet.create({
     marginLeft: 16,
   },
   ball: {
-     height: 80,
-     width: 80,
-     borderColor: 'black',
-     borderRadius: 40,
-     borderWidth: 40,
+    height: 80,
+    width: 80,
+    borderColor: 'black',
+    borderRadius: 40,
+    borderWidth: 40,
 
   },
 })
