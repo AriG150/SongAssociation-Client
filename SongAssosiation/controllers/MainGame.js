@@ -32,9 +32,35 @@ export default function MainGame({navigation}) {
   const panResponder = React.useMemo(() => PanResponder.create({
     onStartShouldSetPanResponder: (evt, gestureState) => true,
     onPanResponderMove: Animated.event([null, {
-      dx  : pos.current.x,
-      dy  : pos.current.y
-    }])
+      dx  : pos.x,
+      dy  : pos.y
+    }]),
+    onPanResponderRelease: (evt, gestureState) => {
+      if (gestureState.dx > 120) {
+        Animated.spring(pos, {
+          toValue: { x:width + 100, y:gestureState.dy}
+        }).start(() => {
+          setCurrentIndex(currentIndex +1), () => {
+            setPos({ x:0, y:0})
+          }
+        })
+      }
+      else if (gestureState.dy < -120) {
+        Animated.spring(pos, {
+          toValue: {x:-width -100, y:gestureState.dy}
+        }).start(() => {
+          setCurrentIndex(currentIndex + 1), () => {
+            setPos({ x:0, y:0 })
+          }
+        })
+      }
+      else {
+        Animated.spring(pos, {
+           toValue: { x: 0, y: 0 },
+           friction: 4
+           }).start()
+      }
+    }
 
   }), [])
 
@@ -43,7 +69,7 @@ export default function MainGame({navigation}) {
     outputRange: ['-10deg', '0deg', '10deg'],
     extrapolate: 'clamp'
   })
-  
+
   useEffect(() => {
     if (count > 0) {
       const interval = setInterval(() => {
@@ -63,7 +89,7 @@ export default function MainGame({navigation}) {
       return (
         <Animated.View key={i}
           {...panResponder.panHandlers}
-          style={[ pos.getLayout(),
+          style={[ pos.getTranslateTransform(),
             {transform: [{rotate:rotation}]},
             style.card,
             {backgroundColor: 'black'}
@@ -85,14 +111,13 @@ export default function MainGame({navigation}) {
           <View style={style.header}>
             <Text>CountDown</Text>
           </View>
+          <View>
+            {cards}
+          </View>
           <View style={style.count}>
             <Text style={style.count}>{count}</Text>
           </View>
-          <View>
-            <Animated.View {...panResponder.panHandlers} style={[pos.current.getLayout(), style.ball]}>
-              <Card word={word[0]} />
-            </Animated.View>
-          </View>
+
         </SafeAreaView>
     )
 }
@@ -100,30 +125,20 @@ export default function MainGame({navigation}) {
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'space-evenly'
   },
   header: {
-    flex: 1
   },
   count: {
     color: 'black',
-    fontSize: 50,
+    fontSize: 50
   },
   card: {
     backgroundColor: 'blue',
     position: 'absolute',
-    flex: 1,
     width: w,
     height: height- 120,
     marginLeft: 16,
-  },
-  ball: {
-    height: 80,
-    width: 80,
-    borderColor: 'black',
-    borderRadius: 40,
-    borderWidth: 40,
-
+    borderRadius: 10,
   },
 })

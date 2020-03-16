@@ -1,5 +1,5 @@
 
-import React, {useEffect} from 'react';
+import React, {useState, Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -51,7 +51,7 @@ export default function EnterPlayers({navigation}) {
 
     return (
       <View  style={styles.screen}>
-        <View style = {styles.card}> 
+        <View style = {styles.card}>
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
             {mappedPlayers}
@@ -60,14 +60,13 @@ export default function EnterPlayers({navigation}) {
               placeholder="Enter Player Name"
               onSubmitEditing={e => handleInput(e)}
               clearButtonMode="always"
-              //passing function to the ref prop, function receives DOM input, pass to arrow function, and then stick to variable called textInput which is equal to input tag
               ref={input => { this.textInput = input }}
               />
           </View>
           <Button onPress={() => navigation.navigate('MainGame')} title="Start Game!"/>
         </View>
       </View>
-  ) 
+  )
 }
 
 
@@ -104,4 +103,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
-
