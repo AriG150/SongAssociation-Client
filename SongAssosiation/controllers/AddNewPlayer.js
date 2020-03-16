@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -14,13 +14,21 @@ export default function AddNewPlayer () {
   const [listPlayers, setListPlayers] = React.useState([])
 
     const handleInput = (e) => {
-      console.log(listPlayers)
       var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
       setListPlayers(tempPlayer)
+      console.log(listPlayers)
+
       index += 1
       this.textInput.clear()
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          console.log(listPlayers)
+        }, 1000)
+        return () => clearInterval(interval)
+      })
 
   class Player {
     constructor (key, name) {

@@ -55,7 +55,7 @@ export default function MainGame({navigation}) {
         })
       }
       else {
-        Animated.spring(this.position, {
+        Animated.spring(pos, {
            toValue: { x: 0, y: 0 },
            friction: 4
            }).start()
@@ -125,11 +125,9 @@ export default function MainGame({navigation}) {
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'space-evenly'
   },
   header: {
-    flex: 1
   },
   count: {
     color: 'black',
@@ -141,5 +139,6 @@ const style = StyleSheet.create({
     width: w,
     height: height- 120,
     marginLeft: 16,
+    borderRadius: 10,
   },
 })
