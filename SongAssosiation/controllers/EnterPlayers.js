@@ -13,8 +13,9 @@ import {
 
 let index = 0;
 
-export default function EnterPlayers({navigation}) {
+export default function EnterPlayers({navigation, route}) {
   const [listPlayers, setListPlayers] = React.useState([])
+  const { test } = route.params;
 
     const handleInput = (e) => {
       console.log('hit')
@@ -54,6 +55,7 @@ export default function EnterPlayers({navigation}) {
         <View style = {styles.card}>
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
+            <Text style = {styles.instruction}> {route.params?.test} </Text>
             {mappedPlayers}
             <TextInput
               style = {styles.input}
