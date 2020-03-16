@@ -16,14 +16,14 @@ import AddNewPlayer from './AddNewPlayer';
 export default function EnterPlayers({navigation}) {
     return (
       <View  style={styles.screen}>
-        <View style = {styles.card}> 
-          <AddNewPlayer/> 
+        <View style = {styles.card}>
+          <AddNewPlayer/>
         </View>
           <View>
-            <Button onPress={() => navigation.navigate('CountDown')} title="Start Game!"/>
+            <Button onPress={() => navigation.navigate('MainGame')} title="Start Game!"/>
           </View>
       </View>
-  ) 
+  )
 }
 
 
@@ -46,4 +46,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 120,
   }
 })
-
