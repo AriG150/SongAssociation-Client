@@ -18,9 +18,9 @@ export default function EnterPlayers({navigation}) {
       <View  style={styles.screen}>
         <View style = {styles.card}> 
           <AddNewPlayer/> 
+            <Button onPress={() => navigation.navigate('MainGame')} title="Start Game!"/>
         </View>
           <View>
-            <Button onPress={() => navigation.navigate('CountDown')} title="Start Game!"/>
           </View>
       </View>
   ) 
