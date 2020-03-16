@@ -1,5 +1,5 @@
 
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,13 +11,13 @@ import {
   Button,
 } from 'react-native';
 
-
 let index = 0;
 
 export default function EnterPlayers({navigation}) {
   const [listPlayers, setListPlayers] = React.useState([])
 
     const handleInput = (e) => {
+      console.log('hit')
       var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
       setListPlayers(tempPlayer)
@@ -62,7 +62,7 @@ export default function EnterPlayers({navigation}) {
               clearButtonMode="always"
               //passing function to the ref prop, function receives DOM input, pass to arrow function, and then stick to variable called textInput which is equal to input tag
               ref={input => { this.textInput = input }}
-            />
+              />
           </View>
           <Button onPress={() => navigation.navigate('MainGame')} title="Start Game!"/>
         </View>
