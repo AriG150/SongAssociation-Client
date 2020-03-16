@@ -47,7 +47,6 @@ export default function AddNewPlayer () {
 
   return (
     <View>
-      <Text style = {styles.instruction}> Enter Player Names </Text>
       {mappedPlayers}
       <TextInput
         style = {styles.input}
@@ -72,7 +71,6 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 170,
     fontSize: 20,
-    borderRadius: 50,
     backgroundColor: '#b1d1e6',
     justifyContent: 'center'
   }
