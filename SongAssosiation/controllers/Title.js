@@ -16,9 +16,7 @@ export default function Title({navigation}) {
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Song Assosiation</Text>
         <View>
-          <Button onPress={() => navigation.navigate('EnterPlayers', {
-            test: 'this is a test of props'
-          })} title="Enter"/>
+          <Button onPress={() => navigation.navigate('EnterPlayers')} title="Enter"/>
         </View>
       </View>
     )
