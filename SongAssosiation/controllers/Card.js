@@ -10,16 +10,9 @@ import {
 export default function Card(props) {
     return (
         <View>
-          <View style={style.card}>
+          <View>
             <Text>{props.word}</Text>
           </View>
         </View>
     )
 }
-
-const style = StyleSheet.create({
-  card: {
-    flex: 1,
-    flexDirection: 'row'
-  }
-})
