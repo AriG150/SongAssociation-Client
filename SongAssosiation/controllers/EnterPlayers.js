@@ -70,9 +70,7 @@ export default function EnterPlayers({navigation}) {
               ref={input => { this.textInput = input }}
               />
           </View>
-          <Button onPress={() => navigation.navigate('MainGame', {
-            players: listPlayers
-          })} title="Start Game!"/>
+          <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
         </View>
       </View>
   )
