@@ -15,7 +15,7 @@ let index = 0;
 export default function EnterPlayers({navigation}) {
   //Array of players information (index, name, score)
   const [listPlayers, setListPlayers] = React.useState([])
-  const [currentPlayer, setCurrentPlayer] = React.useState("")
+  const [finalPlayer, setFinalPlayer] = React.useState("")
 
   //Handling the input: creating a new Player class, saving it to state 
     const handleInput = (e) => {
@@ -30,11 +30,11 @@ export default function EnterPlayers({navigation}) {
 
     const handleFinalInput = (e) => {
       var lastPlayer = new Player (index, e.nativeEvent.text)
-      console.log('lastPlayer:',lastPlayer)
+      setFinalPlayer(lastPlayer)
       var lastTempPlayer = [...listPlayers, lastPlayer]
       var finalListPlayers = [...listPlayers, lastTempPlayer]
       setListPlayers(finalListPlayers)
-      this.textInput.clear()
+      // this.textInput.clear()
     }
 
   class Player {
@@ -53,13 +53,41 @@ export default function EnterPlayers({navigation}) {
             style={styles.input}
             key={i}
             value={player.name}
-            onBlur={Keyboard.dismiss}
+            // onBlur={Keyboard.dismiss}
             // onSubmitEditing={e => handleInput(e)}
             />
         </View>
       )
     }
   })
+
+  
+  let conditionalButtons = () => {
+    // if finalPlayer has a name return 'Start Game button'
+      if(finalPlayer.length){
+        return (
+          <View>
+            <Text>
+            <Text style = {styles.instruction}> Itchy Monkey Butts </Text>
+            <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
+            </Text>
+          </View>
+        )
+      }
+      else{
+        // if the finalPlayer hasn't been finalized show 'finalize players' button
+        return (
+          <View>
+            <Text>
+            <Text style = {styles.instruction}> Super Itchy Monkey Butts! </Text>
+              <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
+            </Text>
+          </View>
+        )
+      }
+  }
+  
+    
 
     return (
       <View  style={styles.screen}>
@@ -75,8 +103,8 @@ export default function EnterPlayers({navigation}) {
               ref={input => { this.textInput = input }}
               />
           </View>
-          <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
-          <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
+          
+          {conditionalButtons()}
         </View>
       </View>
   )

@@ -58,9 +58,9 @@ export default function MainGame({navigation}) {
       }
       else {
         Animated.spring(pos, {
-           toValue: { x: 0, y: 0 },
-           friction: 4
-           }).start()
+          toValue: { x: 0, y: 0 },
+          friction: 4
+          }).start()
       }
     }
 
