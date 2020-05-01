@@ -64,13 +64,10 @@ export default function EnterPlayers({navigation}) {
   
   let conditionalButtons = () => {
     // if finalPlayer has a name return 'Start Game button'
-      if(finalPlayer.length){
+      if(finalPlayer){
         return (
-          <View>
-            <Text>
-            <Text style = {styles.instruction}> Itchy Monkey Butts </Text>
+          <View>         
             <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
-            </Text>
           </View>
         )
       }
@@ -78,10 +75,7 @@ export default function EnterPlayers({navigation}) {
         // if the finalPlayer hasn't been finalized show 'finalize players' button
         return (
           <View>
-            <Text>
-            <Text style = {styles.instruction}> Super Itchy Monkey Butts! </Text>
-              <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
-            </Text>
+            <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
           </View>
         )
       }
