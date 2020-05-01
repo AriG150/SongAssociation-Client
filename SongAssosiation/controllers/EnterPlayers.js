@@ -2,9 +2,7 @@
 import React, {useState, Component} from 'react';
 
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   TextInput,
@@ -15,19 +13,28 @@ import {
 let index = 0;
 
 export default function EnterPlayers({navigation}) {
+  //Array of players information (index, name, score)
   const [listPlayers, setListPlayers] = React.useState([])
+  const [currentPlayer, setCurrentPlayer] = React.useState("")
 
+  //Handling the input: creating a new Player class, saving it to state 
     const handleInput = (e) => {
       console.log('hit')
-      //onSubmitEditing
-      // var player = new Player(index, e.nativeEvent.text)
-      //onChangeText
-      var player = new Player(index, e)
+      var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
       setListPlayers(tempPlayer)
       index += 1
       this.textInput.clear()
       console.log(listPlayers)
+    }
+
+    const handleFinalInput = (e) => {
+      var lastPlayer = new Player (index, e.nativeEvent.text)
+      console.log('lastPlayer:',lastPlayer)
+      var lastTempPlayer = [...listPlayers, lastPlayer]
+      var finalListPlayers = [...listPlayers, lastTempPlayer]
+      setListPlayers(finalListPlayers)
+      this.textInput.clear()
     }
 
   class Player {
@@ -48,7 +55,6 @@ export default function EnterPlayers({navigation}) {
             value={player.name}
             onBlur={Keyboard.dismiss}
             // onSubmitEditing={e => handleInput(e)}
-            onChangeText = {e => handleInput(e)}
             />
         </View>
       )
@@ -64,15 +70,13 @@ export default function EnterPlayers({navigation}) {
             <TextInput
               style = {styles.input}
               placeholder="Enter Player Name"
-              // onSubmitEditing={e => handleInput(e)}
-              onChangeText={e => handleInput(e)}
+              onSubmitEditing={e => handleInput(e)}
               clearButtonMode="always"
               ref={input => { this.textInput = input }}
               />
           </View>
-          <Button onPress={() => navigation.navigate('MainGame', {
-            players: listPlayers
-          })} title="Start Game!"/>
+          <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
+          <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
         </View>
       </View>
   )
