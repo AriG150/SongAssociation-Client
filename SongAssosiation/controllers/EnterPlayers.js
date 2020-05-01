@@ -34,7 +34,7 @@ export default function EnterPlayers({navigation}) {
       var lastTempPlayer = [...listPlayers, lastPlayer]
       var finalListPlayers = [...listPlayers, lastTempPlayer]
       setListPlayers(finalListPlayers)
-      // this.textInput.clear()
+      this.textInput.clear()
     }
 
   class Player {
@@ -53,8 +53,7 @@ export default function EnterPlayers({navigation}) {
             style={styles.input}
             key={i}
             value={player.name}
-            // onBlur={Keyboard.dismiss}
-            // onSubmitEditing={e => handleInput(e)}
+            onBlur={Keyboard.dismiss}
             />
         </View>
       )
@@ -63,18 +62,27 @@ export default function EnterPlayers({navigation}) {
 
   
   let conditionalButtons = () => {
-    // if finalPlayer has a name return 'Start Game button'
+    // if there is a final player, Start Game button appears 
       if(finalPlayer){
         return (
-          <View>         
+          <View>   
+            {mappedPlayers}      
             <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
           </View>
         )
       }
       else{
-        // if the finalPlayer hasn't been finalized show 'finalize players' button
+        // if there is no final player, 'finalize players' button shown
         return (
           <View>
+            {mappedPlayers} 
+            <TextInput
+              style = {styles.input}
+              placeholder="Enter Player Name"
+              onSubmitEditing={e => handleInput(e)}
+              clearButtonMode="always"
+              ref={input => { this.textInput = input }}
+              />
             <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
           </View>
         )
@@ -88,14 +96,6 @@ export default function EnterPlayers({navigation}) {
         <View style = {styles.card}>
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
-            {mappedPlayers}
-            <TextInput
-              style = {styles.input}
-              placeholder="Enter Player Name"
-              onSubmitEditing={e => handleInput(e)}
-              clearButtonMode="always"
-              ref={input => { this.textInput = input }}
-              />
           </View>
           
           {conditionalButtons()}
