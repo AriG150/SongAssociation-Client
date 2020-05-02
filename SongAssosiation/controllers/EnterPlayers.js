@@ -1,5 +1,6 @@
 
 import React, {useState, Component} from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,10 +8,9 @@ import {
   View,
   Text,
   TextInput,
-  StatusBar,
+  Keyboard,
   Button,
 } from 'react-native';
-
 
 let index = 0;
 
@@ -18,7 +18,11 @@ export default function EnterPlayers({navigation}) {
   const [listPlayers, setListPlayers] = React.useState([])
 
     const handleInput = (e) => {
-      var player = new Player(index, e.nativeEvent.text)
+      console.log('hit')
+      //onSubmitEditing
+      // var player = new Player(index, e.nativeEvent.text)
+      //onChangeText
+      var player = new Player(index, e)
       var tempPlayer = [...listPlayers, player]
       setListPlayers(tempPlayer)
       index += 1
@@ -42,7 +46,9 @@ export default function EnterPlayers({navigation}) {
             style={styles.input}
             key={i}
             value={player.name}
-            onSubmitEditing={e => handleInput(e)}
+            onBlur={Keyboard.dismiss}
+            // onSubmitEditing={e => handleInput(e)}
+            onChangeText = {e => handleInput(e)}
             />
         </View>
       )
@@ -58,10 +64,11 @@ export default function EnterPlayers({navigation}) {
             <TextInput
               style = {styles.input}
               placeholder="Enter Player Name"
-              onSubmitEditing={e => handleInput(e)}
+              // onSubmitEditing={e => handleInput(e)}
+              onChangeText={e => handleInput(e)}
               clearButtonMode="always"
               ref={input => { this.textInput = input }}
-            />
+              />
           </View>
           <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
         </View>
