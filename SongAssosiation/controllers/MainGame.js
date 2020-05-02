@@ -1,4 +1,4 @@
-import React, {Component, route} from 'react';
+import React, {Component} from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Button, PanResponder,
 Animated, Dimensions, Image} from 'react-native';
 
@@ -17,8 +17,6 @@ let words = ['love', 'night', 'sweet', 'shoe', 'dream', 'work', 'back',
 
 
 export default class MainGame extends Component {
-  // var playerName = route.params.playerName
-
   constructor() {
     super();
     this.position = new Animated.ValueXY()
@@ -107,7 +105,6 @@ export default class MainGame extends Component {
   render() {
     return (
       <View>
-        {/* <Text> {route.params.players[0].name} </Text> */}
         {this.renderCards()}
       </View>
     )

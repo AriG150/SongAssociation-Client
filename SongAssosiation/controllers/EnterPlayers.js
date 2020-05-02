@@ -95,7 +95,6 @@ export default function EnterPlayers({navigation}) {
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
           </View>
-          
           {conditionalReturn()}
         </View>
       </View>
