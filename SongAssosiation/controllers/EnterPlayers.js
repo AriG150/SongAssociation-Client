@@ -29,12 +29,10 @@ export default function EnterPlayers({navigation}) {
     }
 
     const handleFinalInput = (e) => {
-      var lastPlayer = new Player (index, e.nativeEvent.text)
-      setFinalPlayer(lastPlayer)
-      var lastTempPlayer = [...listPlayers, lastPlayer]
-      var finalListPlayers = [...listPlayers, lastTempPlayer]
-      setListPlayers(finalListPlayers)
-      this.textInput.clear()
+      var player = new Player (index, e.nativeEvent.text)
+      setFinalPlayer(player)
+      var lastTempPlayer = [...listPlayers, player]
+      setListPlayers(lastTempPlayer)
     }
 
   class Player {
@@ -61,12 +59,12 @@ export default function EnterPlayers({navigation}) {
   })
 
   
-  let conditionalButtons = () => {
-    // if there is a final player, Start Game button appears 
+  let conditionalReturn = () => {
+    // if there is a final player, Start Game button appears and input field dissapears
       if(finalPlayer){
         return (
           <View>   
-            {mappedPlayers}      
+            {mappedPlayers} 
             <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
           </View>
         )
@@ -98,7 +96,7 @@ export default function EnterPlayers({navigation}) {
             <Text style = {styles.instruction}> Enter Player Names: </Text>
           </View>
           
-          {conditionalButtons()}
+          {conditionalReturn()}
         </View>
       </View>
   )
