@@ -22,21 +22,39 @@ export default function EnterPlayers({navigation}) {
 
   //Handling the input: creating a new Player class, saving it to state 
     const handleInput = (e) => {
-      console.log('hit')
+      console.log("🐷 handleInput player info", player)
       var player = new Player(index, e.nativeEvent.text)
       var tempPlayer = [...listPlayers, player]
+      console.log("🐷 handleInput tempPlayer info", tempPlayer)
       setListPlayers(tempPlayer)
       index += 1
       this.textInput.clear()
-      console.log(listPlayers)
+      console.log("🐷 listPlayers",listPlayers)
     }
 
-    const handleFinalInput = (e) => {
-      var player = new Player (index, e.nativeEvent.text)
-      setFinalPlayer(player)
-      var lastTempPlayer = [...listPlayers, player]
-      setListPlayers(lastTempPlayer)
-    }
+    // ---------------------------
+    // Notes from 5.4.2020. To resolve problem identified via the 🚨 I removed handleFinalInput
+    // and solved the idex problem. I also identified the reason the "name"  is undefined for the 
+    // final player is because they did not press enter. So the whole point of handleFinalInput is null. 
+    // Back to the drawing board 
+    // ---------------------------
+    // const handleFinalInput = (e) => {
+    //   //create a new player from the user clicking the 'finalize players' button
+    //   var player = new Player (index, e.nativeEvent.text)
+    //   console.log(" 🐳 player from input: ", {player})
+    //   //setFinalPlayer as that value
+    //   setFinalPlayer(player)
+    //   //this new variable has the new final player information and the data from listPlayers
+    //   var lastTempPlayer = [...listPlayers, player]
+    //   console.log(" 🐳 lastTempPlayer: ", {lastTempPlayer})
+    //   //final player being added to listPlayers
+    //   //🚨 ERROR: name of final player is "undefined" and index is set to '0' because it's
+    //   // not being added to the orignal listPlayers in the normal way:
+    //   // [{"index": 0, "name": "Adi", "score": 0}, {"index": 1, "name": "Yaron ", "score": 0}, {"index": 2, "name": "Estee ", "score": 0}, {"index": 0, "name": undefined, "score": 0}]
+
+    //   setListPlayers(lastTempPlayer)
+    //   console.log(" 🐳 the final version of listPlayers", {listPlayers})
+    // }
 
   class Player {
     constructor (key, name) {
@@ -73,6 +91,7 @@ export default function EnterPlayers({navigation}) {
     return (
       <View>
         <Text> {player.name} </Text>
+        
       </View>
     )
   })
@@ -89,7 +108,8 @@ export default function EnterPlayers({navigation}) {
               <Text> Final Player Name: {finalPlayer.name} </Text>
               <Text> Final Player Index to prove their is a problem: {finalPlayer.index} </Text>
               {/* {showPlayerNames()} */}
-              {modalContent}
+              {/* {modalContent} */}
+              {console.log("🎭", listPlayers)}
                 
             </View>
           </Modal>
@@ -104,6 +124,7 @@ export default function EnterPlayers({navigation}) {
         return (
           <View>
             {mappedPlayers} 
+            {console.log("🐙", listPlayers)}
             <TextInput
               style = {styles.input}
               placeholder="Enter Player Name"
@@ -111,7 +132,7 @@ export default function EnterPlayers({navigation}) {
               clearButtonMode="always"
               ref={input => { this.textInput = input }}
               />
-            <Button onPress={e => {handleFinalInput(e); setModalOpen(true)}} title="finalize players"/>
+            <Button onPress={e => {handleInput(e); setModalOpen(true)}} title="finalize players"/>
           </View>
         )
       }
