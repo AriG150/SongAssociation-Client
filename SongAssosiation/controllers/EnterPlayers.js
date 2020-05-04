@@ -16,7 +16,7 @@ let index = 0;
 export default function EnterPlayers({navigation}) {
   //Array of players information (index, name, score)
   const [listPlayers, setListPlayers] = React.useState([])
-  const [finalPlayer, setFinalPlayer] = React.useState("")
+  const [finalPlayer, setFinalPlayer] = React.useState()
   const [modalOpen, setModalOpen] = React.useState(false)
 
 
@@ -61,15 +61,42 @@ export default function EnterPlayers({navigation}) {
     }
   })
 
+  // const showPlayerNames = () => {
+  //   for(let i = 0; i < listPlayers.length; i++){
+  //       console.log(listPlayers[i].name)
+  //       console.log(listPlayers)
+  //       console.log(finalPlayer)
+  //   }
+  // }
+
+  const modalContent = listPlayers.map((player, i) => {
+    return (
+      <View>
+        <Text> {player.name} </Text>
+      </View>
+    )
+  })
+
 
   let conditionalReturn = () => {
     // if there is a final player, Start Game button appears and input field dissapears
+    // If there is a final player, open modal which shows 
       if(finalPlayer){
         return (
-          <View>   
-            {mappedPlayers} 
-            <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
-          </View>
+          <Modal visible={modalOpen} animationType="slide" >
+            <View style={styles.modalContent}>
+              <Text> Modal is Open </Text>
+              <Text> Final Player Name: {finalPlayer.name} </Text>
+              <Text> Final Player Index to prove their is a problem: {finalPlayer.index} </Text>
+              {/* {showPlayerNames()} */}
+              {modalContent}
+                
+            </View>
+          </Modal>
+          // <View>   
+          //   {mappedPlayers} 
+          //   <Button onPress={() => navigation.navigate('MainGame', {players: listPlayers})} title="Start Game!"/>
+          // </View>
         )
       }
       else{
@@ -98,11 +125,7 @@ export default function EnterPlayers({navigation}) {
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
           </View>
-          <Modal visible={modalOpen}>
-            <View style={styles.modalContent}>
-              <Text> Modal is Open </Text>
-            </View>
-          </Modal>
+          
           {conditionalReturn()}
         </View>
       </View>
