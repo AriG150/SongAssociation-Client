@@ -1,5 +1,5 @@
 
-import React, {useState, Component} from 'react';
+import React, {useState} from 'react';
 
 import {
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   TextInput,
   Keyboard,
   Button,
+  Modal
 } from 'react-native';
 
 let index = 0;
@@ -16,6 +17,8 @@ export default function EnterPlayers({navigation}) {
   //Array of players information (index, name, score)
   const [listPlayers, setListPlayers] = React.useState([])
   const [finalPlayer, setFinalPlayer] = React.useState("")
+  const [modalOpen, setModalOpen] = React.useState(false)
+
 
   //Handling the input: creating a new Player class, saving it to state 
     const handleInput = (e) => {
@@ -58,7 +61,7 @@ export default function EnterPlayers({navigation}) {
     }
   })
 
-  
+
   let conditionalReturn = () => {
     // if there is a final player, Start Game button appears and input field dissapears
       if(finalPlayer){
@@ -81,7 +84,7 @@ export default function EnterPlayers({navigation}) {
               clearButtonMode="always"
               ref={input => { this.textInput = input }}
               />
-            <Button onPress={e => handleFinalInput(e)} title="finalize players"/>
+            <Button onPress={e => {handleFinalInput(e); setModalOpen(true)}} title="finalize players"/>
           </View>
         )
       }
@@ -95,7 +98,11 @@ export default function EnterPlayers({navigation}) {
           <View>
             <Text style = {styles.instruction}> Enter Player Names: </Text>
           </View>
-          
+          <Modal visible={modalOpen}>
+            <View style={styles.modalContent}>
+              <Text> Modal is Open </Text>
+            </View>
+          </Modal>
           {conditionalReturn()}
         </View>
       </View>
